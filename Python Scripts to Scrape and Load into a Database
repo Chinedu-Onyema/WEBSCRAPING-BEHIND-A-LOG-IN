@@ -1,1 +1,565 @@
+# I could just scrap the website directly if it not behind a log in
+# But i couldn't because it is behind a log in
+
+
+from bs4 import BeautifulSoup
+import requests
+url = 'https://www.nairaland.com/jobs'
+page = requests.get(url)
+soup = BeautifulSoup(page.text, 'html.parser')
+print(soup)
+
+# I could just scrap the website directly if it not behind a log in
+# But i couldn't because it is behind a log in
+
+
+from bs4 import BeautifulSoup
+import requests
+url = 'https://www.nairaland.com/jobs'
+page = requests.get(url)
+soup = BeautifulSoup(page.text, 'html.parser')
+print(soup)
+
+
+# Parse the HTML with BeautifulSoup
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# Extract the main poster's name
+poster_name_tag = soup.find('a', href='/laurelp')
+poster_name = poster_name_tag.text if poster_name_tag else 'N/A'
+
+# Extract the number of posts and views
+post_views_info = soup.find('span', class_='s')
+posts_and_views = post_views_info.find_all('b')
+post_count = posts_and_views[1].text if len(posts_and_views) > 1 else 'N/A'
+views = posts_and_views[2].text if len(posts_and_views) > 2 else 'N/A'
+
+# Extract the time and date of the post
+time = post_views_info.find_all('b')[3].text if len(posts_and_views) > 3 else 'N/A'
+date = post_views_info.find_all('b')[4].text if len(posts_and_views) > 4 else 'N/A'
+
+# Extract the second poster's name (last poster)
+last_poster_tag_name = soup.find('a', href= '/seundy')  # Get the last poster from the <a> tag list
+last_poster = last_poster_tag_name.text if last_poster_tag_name else 'N/A'
+
+# Print the extracted data
+print(f"Poster Name: {poster_name}")
+print(f"Post Count: {post_count}")
+print(f"Views: {views}")
+print(f"Time: {time}")
+print(f"Date: {date}")
+print(f"Last Poster Name: {last_poster}")
+
+
+# Parse the HTML with BeautifulSoup
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# Find all post blocks (adjust the tag and class according to actual structure)
+posts = soup.find_all('span', class_='s')  # Assuming each post details are within <span> with class 's'
+
+# Initialize lists to store the extracted information
+poster_names = []
+post_counts = []
+view_counts = []
+times = []
+dates = []
+last_posters = []
+
+# Loop through each post block to extract information
+for post_views_info in posts:
+    # Extract poster's name
+    poster_name_tag = post_views_info.find('a')  # Assuming the first <a> tag is the poster's name
+    poster_name = poster_name_tag.text if poster_name_tag else 'N/A'
+    poster_names.append(poster_name)
+
+    # Extract the number of posts and views
+    posts_and_views = post_views_info.find_all('b')
+    post_count = posts_and_views[1].text if len(posts_and_views) > 1 else 'N/A'
+    post_counts.append(post_count)
+
+    view_count = posts_and_views[2].text if len(posts_and_views) > 2 else 'N/A'
+    view_counts.append(view_count)
+
+    # Extract the time and date of the post
+    time = posts_and_views[3].text if len(posts_and_views) > 3 else 'N/A'
+    times.append(time)
+
+    date = posts_and_views[4].text if len(posts_and_views) > 4 else 'N/A'
+    dates.append(date)
+
+    # Extract the second poster's name (last poster)
+    last_poster_tag = post_views_info.find_all('a')[-1]  # Assuming the last <a> tag is the last poster's name
+    last_poster = last_poster_tag.text if last_poster_tag else 'N/A'
+    last_posters.append(last_poster)
+
+# Display extracted information
+for i in range(len(poster_names)):
+    print(f"Poster Name: {poster_names[i]}")
+    print(f"Post Count: {post_counts[i]}")
+    print(f"Views: {view_counts[i]}")
+    print(f"Time: {times[i]}")
+    print(f"Date: {dates[i]}")
+    print(f"Last Poster Name: {last_posters[i]}")
+    print('-' * 50)
+
+import requests
+
+cookies = {
+    'session': '""',
+    'ai_user': 'e2Hi55QF1yZg+yBbxztwp6|2024-09-23T04:04:09.869Z',
+    'session': '""',
+    '_gid': 'GA1.2.927634570.1727849250',
+    '__gads': 'ID=b82f70ee813806ec:T=1727064691:RT=1727849696:S=ALNI_MbX4hXYSDlvWE9FqwH08BS8-VgnMA',
+    '__gpi': 'UID=00000f096ea6a392:T=1727064691:RT=1727849696:S=ALNI_MYDy964LQKQu4a5evvNhU6RiNAV6w',
+    '__eoi': 'ID=9c42286dda43baf5:T=1727064691:RT=1727849696:S=AA-AfjYpPn8xZaYyKA3TAmN8o-44',
+    'FCNEC': '%5B%5B%22AKsRol9TcnUvFlUTk2YxxAWVCmcIdyFo_sk4-wyu9PdZa4HUZtqNoi-f4sc1glHbztVAD8XFdexFjlGlK39rbbVbSLzLutPd8qgsNjWLkGFi_iULFKPA3j5OfMMBi-KxR-Lz51PBU415C5_AvZ84EaKE5aGuz_OodQ%3D%3D%22%5D%5D',
+    '_gat_gtag_UA_91638_1': '1',
+    '_ga_GGM2XGB2C1': 'GS1.1.1727856871.4.1.1727858023.0.0.0',
+    '_ga': 'GA1.1.117970615.1727064250',
+}
+
+headers = {
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'max-age=0',
+    # 'cookie': 'session=""; ai_user=e2Hi55QF1yZg+yBbxztwp6|2024-09-23T04:04:09.869Z; session=""; _gid=GA1.2.927634570.1727849250; __gads=ID=b82f70ee813806ec:T=1727064691:RT=1727849696:S=ALNI_MbX4hXYSDlvWE9FqwH08BS8-VgnMA; __gpi=UID=00000f096ea6a392:T=1727064691:RT=1727849696:S=ALNI_MYDy964LQKQu4a5evvNhU6RiNAV6w; __eoi=ID=9c42286dda43baf5:T=1727064691:RT=1727849696:S=AA-AfjYpPn8xZaYyKA3TAmN8o-44; FCNEC=%5B%5B%22AKsRol9TcnUvFlUTk2YxxAWVCmcIdyFo_sk4-wyu9PdZa4HUZtqNoi-f4sc1glHbztVAD8XFdexFjlGlK39rbbVbSLzLutPd8qgsNjWLkGFi_iULFKPA3j5OfMMBi-KxR-Lz51PBU415C5_AvZ84EaKE5aGuz_OodQ%3D%3D%22%5D%5D; _gat_gtag_UA_91638_1=1; _ga_GGM2XGB2C1=GS1.1.1727856871.4.1.1727858023.0.0.0; _ga=GA1.1.117970615.1727064250',
+    'priority': 'u=0, i',
+    'referer': 'https://www.nairaland.com/jobs',
+    'sec-ch-ua': '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+}
+
+response = requests.get('https://www.nairaland.com/jobs/1', cookies=cookies, headers=headers)
+soup = BeautifulSoup(response.content, 'html.parser')
+print(soup)
+
+# Parse the HTML with BeautifulSoup
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# Extract the main poster's name
+poster_name_tag = soup.find('a', href='/curdlebug')
+poster_name = poster_name_tag.text if poster_name_tag else 'N/A'
+
+# Extract the number of posts and views
+post_views_info = soup.find('span', class_='s')
+posts_and_views = post_views_info.find_all('b')
+post_count = posts_and_views[1].text if len(posts_and_views) > 1 else 'N/A'
+views = posts_and_views[2].text if len(posts_and_views) > 2 else 'N/A'
+
+# Extract the time and date of the post
+time = post_views_info.find_all('b')[3].text if len(posts_and_views) > 3 else 'N/A'
+date = post_views_info.find_all('b')[4].text if len(posts_and_views) > 4 else 'N/A'
+
+# Extract the second poster's name (last poster)
+last_poster_tag_name = soup.find('a', href= '/dharmie13')  # Get the last poster from the <a> tag list
+last_poster = last_poster_tag_name.text if last_poster_tag_name else 'N/A'
+
+# Print the extracted data
+print(f"Poster Name: {poster_name}")
+print(f"Post Count: {post_count}")
+print(f"Views: {views}")
+print(f"Time: {time}")
+#print(f"Date: {date}")
+print(f"Last Poster Name: {last_poster}")
+
+
+# Parse the HTML with BeautifulSoup
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# Find all post blocks (adjust the tag and class according to actual structure)
+posts = soup.find_all('span', class_='s')  # Assuming each post details are within <span> with class 's'
+
+# Initialize lists to store the extracted information
+poster_names = []
+post_counts = []
+view_counts = []
+times = []
+dates = []
+last_posters = []
+
+# Loop through each post block to extract information
+for post_views_info in posts:
+    # Extract poster's name
+    poster_name_tag = post_views_info.find('a')  # Assuming the first <a> tag is the poster's name
+    poster_name = poster_name_tag.text if poster_name_tag else 'N/A'
+    poster_names.append(poster_name)
+
+    # Extract the number of posts and views
+    posts_and_views = post_views_info.find_all('b')
+    post_count = posts_and_views[1].text if len(posts_and_views) > 1 else 'N/A'
+    post_counts.append(post_count)
+
+    view_count = posts_and_views[2].text if len(posts_and_views) > 2 else 'N/A'
+    view_counts.append(view_count)
+
+    # Extract the time and date of the post
+    time = posts_and_views[3].text if len(posts_and_views) > 3 else 'N/A'
+    times.append(time)
+
+    date = posts_and_views[4].text if len(posts_and_views) > 4 else 'N/A'
+    dates.append(date)
+
+    # Extract the second poster's name (last poster)
+    last_poster_tag = post_views_info.find_all('a')[-1]  # Assuming the last <a> tag is the last poster's name
+    last_poster = last_poster_tag.text if last_poster_tag else 'N/A'
+    last_posters.append(last_poster)
+
+# Display extracted information
+for i in range(len(poster_names)):
+    print(f"Poster Name: {poster_names[i]}")
+    print(f"Post Count: {post_counts[i]}")
+    print(f"Views: {view_counts[i]}")
+    print(f"Time: {times[i]}")
+    print(f"Date: {dates[i]}")
+    print(f"Last Poster Name: {last_posters[i]}")
+    print('-' * 50)
+
+
+# connecting to mySQL Database 
+import mysql.connector
+
+mydatabase = mysql.connector.connect(
+  host="localhost", # database host
+  user="root", # username
+  password="****", # password
+  port = "3306",
+)
+
+print(mydatabase)
+
+#creating the database w3_schools
+mycursor = mydatabase.cursor() # SQL database connector
+
+mycursor.execute("CREATE DATABASE Nairaland_Jobs")
+
+# showing all the databases in MySQL
+mycursor = mydatabase.cursor()
+mycursor.execute("SHOW DATABASES")
+
+for x in mycursor:
+  print(x)
+
+# Try connecting to the database "nairaland jobs":
+mydatabase = mysql.connector.connect(  
+  host="localhost",
+  user="root",
+  password="****",
+  port = "3306",
+  database="nairaland_jobs"                                 
+)
+
+mycursor = mydatabase.cursor()
+
+# Corrected CREATE TABLE statement
+mycursor.execute("""
+    CREATE TABLE Jobs (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    poster_name VARCHAR(255),
+    post_count INT,
+    view_count VARCHAR(225),
+    time_posted VARCHAR(50),
+    date_posted VARCHAR(50),
+    last_poster_name VARCHAR(255)
+    )
+""")
+
+mycursor = mydatabase.cursor()
+mycursor.execute("SHOW TABLES")
+
+for x in mycursor:
+  print(x)
+
+# PYTHON SCRIPTS PIPELINE FOR THE FIRST TABLE (1) JOBS
+
+import mysql.connector
+import requests
+
+
+cookies = {
+    'ai_user': 'e2Hi55QF1yZg+yBbxztwp6|2024-09-23T04:04:09.869Z',
+    'session': '""',
+    '_gid': 'GA1.2.927634570.1727849250',
+    '__gads': 'ID=b82f70ee813806ec:T=1727064691:RT=1727849696:S=ALNI_MbX4hXYSDlvWE9FqwH08BS8-VgnMA',
+    '__gpi': 'UID=00000f096ea6a392:T=1727064691:RT=1727849696:S=ALNI_MYDy964LQKQu4a5evvNhU6RiNAV6w',
+    '__eoi': 'ID=9c42286dda43baf5:T=1727064691:RT=1727849696:S=AA-AfjYpPn8xZaYyKA3TAmN8o-44',
+    'FCNEC': '%5B%5B%22AKsRol9TcnUvFlUTk2YxxAWVCmcIdyFo_sk4-wyu9PdZa4HUZtqNoi-f4sc1glHbztVAD8XFdexFjlGlK39rbbVbSLzLutPd8qgsNjWLkGFi_iULFKPA3j5OfMMBi-KxR-Lz51PBU415C5_AvZ84EaKE5aGuz_OodQ%3D%3D%22%5D%5D',
+    '_ga_GGM2XGB2C1': 'GS1.1.1727849249.3.1.1727849305.0.0.0',
+    '_ga': 'GA1.1.117970615.1727064250',
+}
+
+headers = {
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'max-age=0',
+    # 'cookie': 'ai_user=e2Hi55QF1yZg+yBbxztwp6|2024-09-23T04:04:09.869Z; session=""; _gid=GA1.2.927634570.1727849250; __gads=ID=b82f70ee813806ec:T=1727064691:RT=1727849696:S=ALNI_MbX4hXYSDlvWE9FqwH08BS8-VgnMA; __gpi=UID=00000f096ea6a392:T=1727064691:RT=1727849696:S=ALNI_MYDy964LQKQu4a5evvNhU6RiNAV6w; __eoi=ID=9c42286dda43baf5:T=1727064691:RT=1727849696:S=AA-AfjYpPn8xZaYyKA3TAmN8o-44; FCNEC=%5B%5B%22AKsRol9TcnUvFlUTk2YxxAWVCmcIdyFo_sk4-wyu9PdZa4HUZtqNoi-f4sc1glHbztVAD8XFdexFjlGlK39rbbVbSLzLutPd8qgsNjWLkGFi_iULFKPA3j5OfMMBi-KxR-Lz51PBU415C5_AvZ84EaKE5aGuz_OodQ%3D%3D%22%5D%5D; _ga_GGM2XGB2C1=GS1.1.1727849249.3.1.1727849305.0.0.0; _ga=GA1.1.117970615.1727064250',
+    'priority': 'u=0, i',
+    'referer': 'https://www.nairaland.com/',
+    'sec-ch-ua': '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+}
+
+# MySQL connection setup
+def connect_to_db():
+    mydatabase = mysql.connector.connect(  
+      host="localhost",
+      user="root",
+      password="****",
+      port = "3306",
+      database="nairaland_jobs"                                 
+    )
+    return  mydatabase
+
+# Function to insert data into the database
+def insert_data_into_db(cursor, poster_name, post_count, view_count, time, date, last_poster):
+    insert_query = """
+    INSERT INTO jobs (poster_name, post_count, view_count, time_posted, date_posted, last_poster_name)
+    VALUES (%s, %s, %s, %s, %s, %s)
+    """
+    cursor.execute(insert_query, (poster_name, post_count, view_count, time, date, last_poster))
+
+# Function to extract data from a single page
+def extract_data_from_html(response, cursor):
+    soup = BeautifulSoup(response.content, 'html.parser')
+    posts = soup.find_all('span', class_='s')  # Adjust the tag and class as per actual HTML structure
+    
+    # Loop through each post block to extract information
+    for post_views_info in posts:
+        # Extract poster's name
+        poster_name_tag = post_views_info.find('a')  # Assuming the first <a> tag is the poster's name
+        poster_name = poster_name_tag.text if poster_name_tag else 'N/A'
+
+        # Extract the number of posts and views
+        posts_and_views = post_views_info.find_all('b')
+        post_count = posts_and_views[1].text if len(posts_and_views) > 1 else 'N/A'
+        view_count = posts_and_views[2].text if len(posts_and_views) > 2 else 'N/A'
+
+        # Extract the time and date of the post
+        time = posts_and_views[3].text if len(posts_and_views) > 3 else 'N/A'
+        date = posts_and_views[4].text if len(posts_and_views) > 4 else 'N/A'
+
+        # Extract the second poster's name (last poster)
+        last_poster_tag = post_views_info.find_all('a')[-1]  # Assuming the last <a> tag is the last poster's name
+        last_poster = last_poster_tag.text if last_poster_tag else 'N/A'
+
+        # Insert the data into the database
+        insert_data_into_db(cursor, poster_name, post_count, view_count, time, date, last_poster)
+
+# Main function to scrape a single page and insert data into the database
+def scrape_single_page(url, cookies, headers):
+    connection = connect_to_db()
+    cursor = connection.cursor()
+
+    try:
+        # Fetch the page using cookies and headers
+        response = requests.get(url, cookies=cookies, headers=headers)
+        response.raise_for_status()
+
+        # Extract data from the HTML content and insert into DB
+        extract_data_from_html(response, cursor)  # Pass the cursor to extract_data_from_html()
+
+        connection.commit()  # Commit the changes after inserting data
+
+    except requests.RequestException as e:
+        print(f"Failed to retrieve data from {url}: {e}")
+    
+    cursor.close()
+    connection.close()
+
+# URL of the page to scrape
+url = 'https://www.nairaland.com/jobs'
+
+# Start scraping the single page and storing it in the database
+scrape_single_page(url, cookies, headers)
+
+mycursor = mydatabase.cursor()
+
+# Corrected CREATE TABLE statement
+mycursor.execute("""
+    CREATE TABLE Jobs_2 (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    poster_name VARCHAR(255),
+    post_count INT,
+    view_count VARCHAR(225),
+    time_posted VARCHAR(50),
+    date_posted VARCHAR(50),
+    last_poster_name VARCHAR(255)
+    )
+""")
+
+mycursor = mydatabase.cursor()
+mycursor.execute("SHOW TABLES")
+
+for x in mycursor:
+  print(x)
+
+# PYTHON SCRIPTS PIPELINE FOR THE SECOND TABLE (2) JOBS_2
+
+import mysql.connector
+import requests
+
+cookies = {
+    'session': '""',
+    'ai_user': 'e2Hi55QF1yZg+yBbxztwp6|2024-09-23T04:04:09.869Z',
+    'session': '""',
+    '_gid': 'GA1.2.927634570.1727849250',
+    '__gads': 'ID=b82f70ee813806ec:T=1727064691:RT=1727849696:S=ALNI_MbX4hXYSDlvWE9FqwH08BS8-VgnMA',
+    '__gpi': 'UID=00000f096ea6a392:T=1727064691:RT=1727849696:S=ALNI_MYDy964LQKQu4a5evvNhU6RiNAV6w',
+    '__eoi': 'ID=9c42286dda43baf5:T=1727064691:RT=1727849696:S=AA-AfjYpPn8xZaYyKA3TAmN8o-44',
+    'FCNEC': '%5B%5B%22AKsRol9TcnUvFlUTk2YxxAWVCmcIdyFo_sk4-wyu9PdZa4HUZtqNoi-f4sc1glHbztVAD8XFdexFjlGlK39rbbVbSLzLutPd8qgsNjWLkGFi_iULFKPA3j5OfMMBi-KxR-Lz51PBU415C5_AvZ84EaKE5aGuz_OodQ%3D%3D%22%5D%5D',
+    '_gat_gtag_UA_91638_1': '1',
+    '_ga_GGM2XGB2C1': 'GS1.1.1727856871.4.1.1727858023.0.0.0',
+    '_ga': 'GA1.1.117970615.1727064250',
+}
+
+headers = {
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'max-age=0',
+    # 'cookie': 'session=""; ai_user=e2Hi55QF1yZg+yBbxztwp6|2024-09-23T04:04:09.869Z; session=""; _gid=GA1.2.927634570.1727849250; __gads=ID=b82f70ee813806ec:T=1727064691:RT=1727849696:S=ALNI_MbX4hXYSDlvWE9FqwH08BS8-VgnMA; __gpi=UID=00000f096ea6a392:T=1727064691:RT=1727849696:S=ALNI_MYDy964LQKQu4a5evvNhU6RiNAV6w; __eoi=ID=9c42286dda43baf5:T=1727064691:RT=1727849696:S=AA-AfjYpPn8xZaYyKA3TAmN8o-44; FCNEC=%5B%5B%22AKsRol9TcnUvFlUTk2YxxAWVCmcIdyFo_sk4-wyu9PdZa4HUZtqNoi-f4sc1glHbztVAD8XFdexFjlGlK39rbbVbSLzLutPd8qgsNjWLkGFi_iULFKPA3j5OfMMBi-KxR-Lz51PBU415C5_AvZ84EaKE5aGuz_OodQ%3D%3D%22%5D%5D; _gat_gtag_UA_91638_1=1; _ga_GGM2XGB2C1=GS1.1.1727856871.4.1.1727858023.0.0.0; _ga=GA1.1.117970615.1727064250',
+    'priority': 'u=0, i',
+    'referer': 'https://www.nairaland.com/jobs',
+    'sec-ch-ua': '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+}
+
+# MySQL connection setup
+def connect_to_db():
+    mydatabase = mysql.connector.connect(  
+      host="localhost",
+      user="root",
+      password="****",
+      port = "3306",
+      database="nairaland_jobs"                                  
+    )
+    return  mydatabase
+
+# Function to insert data into the database
+def insert_data_into_db(cursor, poster_name, post_count, view_count, time, date, last_poster):
+    insert_query = """
+    INSERT INTO jobs_2 (poster_name, post_count, view_count, time_posted, date_posted, last_poster_name)
+    VALUES (%s, %s, %s, %s, %s, %s)
+    """
+    cursor.execute(insert_query, (poster_name, post_count, view_count, time, date, last_poster))
+
+# Function to extract data from a single page
+def extract_data_from_html(response, cursor):
+    soup = BeautifulSoup(response.content, 'html.parser')
+    posts = soup.find_all('span', class_='s')  # Adjust the tag and class as per actual HTML structure
+    
+    # Loop through each post block to extract information
+    for post_views_info in posts:
+        # Extract poster's name
+        poster_name_tag = post_views_info.find('a')  # Assuming the first <a> tag is the poster's name
+        poster_name = poster_name_tag.text if poster_name_tag else 'N/A'
+
+        # Extract the number of posts and views
+        posts_and_views = post_views_info.find_all('b')
+        post_count = posts_and_views[1].text if len(posts_and_views) > 1 else 'N/A'
+        view_count = posts_and_views[2].text if len(posts_and_views) > 2 else 'N/A'
+
+        # Extract the time and date of the post
+        time = posts_and_views[3].text if len(posts_and_views) > 3 else 'N/A'
+        date = posts_and_views[4].text if len(posts_and_views) > 4 else 'N/A'
+
+        # Extract the second poster's name (last poster)
+        last_poster_tag = post_views_info.find_all('a')[-1]  # Assuming the last <a> tag is the last poster's name
+        last_poster = last_poster_tag.text if last_poster_tag else 'N/A'
+
+        # Insert the data into the database
+        insert_data_into_db(cursor, poster_name, post_count, view_count, time, date, last_poster)
+
+# Main function to scrape a single page and insert data into the database
+def scrape_single_page(url, cookies, headers):
+    connection = connect_to_db()
+    cursor = connection.cursor()
+
+    try:
+        # Fetch the page using cookies and headers
+        response = requests.get(url, cookies=cookies, headers=headers)
+        response.raise_for_status()
+
+        # Extract data from the HTML content and insert into DB
+        extract_data_from_html(response, cursor)  # Pass the cursor to extract_data_from_html()
+
+        connection.commit()  # Commit the changes after inserting data
+
+    except requests.RequestException as e:
+        print(f"Failed to retrieve data from {url}: {e}")
+    
+    cursor.close()
+    connection.close()
+
+# URL of the page to scrape
+url = 'https://www.nairaland.com/jobs/1'
+
+# Start scraping the single page and storing it in the database
+scrape_single_page(url, cookies, headers)
+
+# Use the DESC keyword to sort the result in a descending order.
+import mysql.connector
+
+mydatabase = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="****",
+  port = "3306",
+  database="nairaland_jobs" 
+
+)
+
+mycursor = mydatabase.cursor()
+
+sql = "SELECT * FROM jobs ORDER BY view_count  DESC"
+
+mycursor.execute(sql)
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+
+# Use the DESC keyword to sort the result in a descending order.
+import mysql.connector
+
+mydatabase = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="****",
+  port = "3306",
+  database="nairaland_jobs" 
+
+)
+
+mycursor = mydatabase.cursor()
+
+sql = "SELECT * FROM jobs_2 ORDER BY view_count  DESC"
+
+mycursor.execute(sql)
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+
 
