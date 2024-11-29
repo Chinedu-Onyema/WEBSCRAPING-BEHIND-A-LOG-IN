@@ -9,16 +9,51 @@ page = requests.get(url)
 soup = BeautifulSoup(page.text, 'html.parser')
 print(soup)
 
-# I could just scrap the website directly if it not behind a log in
-# But i couldn't because it is behind a log in
+
+# when my data is behind a log in, i could use the cookies
+# and headers from the website by copying the cURL as bash
+# from the network category in the developer tools and pasting
+# it in https://curlconverter.com/ which organiises the cookies and headers of the website
+# in a dictionary and then i can import the beautiful soup and request libraries.
 
 
-from bs4 import BeautifulSoup
 import requests
-url = 'https://www.nairaland.com/jobs'
-page = requests.get(url)
-soup = BeautifulSoup(page.text, 'html.parser')
+from bs4 import BeautifulSoup
+
+cookies = {
+    'ai_user': 'e2Hi55QF1yZg+yBbxztwp6|2024-09-23T04:04:09.869Z',
+    'session': '""',
+    '_gid': 'GA1.2.927634570.1727849250',
+    '__gads': 'ID=b82f70ee813806ec:T=1727064691:RT=1727849696:S=ALNI_MbX4hXYSDlvWE9FqwH08BS8-VgnMA',
+    '__gpi': 'UID=00000f096ea6a392:T=1727064691:RT=1727849696:S=ALNI_MYDy964LQKQu4a5evvNhU6RiNAV6w',
+    '__eoi': 'ID=9c42286dda43baf5:T=1727064691:RT=1727849696:S=AA-AfjYpPn8xZaYyKA3TAmN8o-44',
+    'FCNEC': '%5B%5B%22AKsRol9TcnUvFlUTk2YxxAWVCmcIdyFo_sk4-wyu9PdZa4HUZtqNoi-f4sc1glHbztVAD8XFdexFjlGlK39rbbVbSLzLutPd8qgsNjWLkGFi_iULFKPA3j5OfMMBi-KxR-Lz51PBU415C5_AvZ84EaKE5aGuz_OodQ%3D%3D%22%5D%5D',
+    '_ga_GGM2XGB2C1': 'GS1.1.1727849249.3.1.1727849305.0.0.0',
+    '_ga': 'GA1.1.117970615.1727064250',
+}
+
+headers = {
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'max-age=0',
+    # 'cookie': 'ai_user=e2Hi55QF1yZg+yBbxztwp6|2024-09-23T04:04:09.869Z; session=""; _gid=GA1.2.927634570.1727849250; __gads=ID=b82f70ee813806ec:T=1727064691:RT=1727849696:S=ALNI_MbX4hXYSDlvWE9FqwH08BS8-VgnMA; __gpi=UID=00000f096ea6a392:T=1727064691:RT=1727849696:S=ALNI_MYDy964LQKQu4a5evvNhU6RiNAV6w; __eoi=ID=9c42286dda43baf5:T=1727064691:RT=1727849696:S=AA-AfjYpPn8xZaYyKA3TAmN8o-44; FCNEC=%5B%5B%22AKsRol9TcnUvFlUTk2YxxAWVCmcIdyFo_sk4-wyu9PdZa4HUZtqNoi-f4sc1glHbztVAD8XFdexFjlGlK39rbbVbSLzLutPd8qgsNjWLkGFi_iULFKPA3j5OfMMBi-KxR-Lz51PBU415C5_AvZ84EaKE5aGuz_OodQ%3D%3D%22%5D%5D; _ga_GGM2XGB2C1=GS1.1.1727849249.3.1.1727849305.0.0.0; _ga=GA1.1.117970615.1727064250',
+    'priority': 'u=0, i',
+    'referer': 'https://www.nairaland.com/',
+    'sec-ch-ua': '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+}
+
+response = requests.get('https://www.nairaland.com/jobs', cookies=cookies, headers=headers)
+soup = BeautifulSoup(response.content, 'html.parser')
 print(soup)
+
 
 
 # Parse the HTML with BeautifulSoup
@@ -49,6 +84,7 @@ print(f"Views: {views}")
 print(f"Time: {time}")
 print(f"Date: {date}")
 print(f"Last Poster Name: {last_poster}")
+
 
 
 # Parse the HTML with BeautifulSoup
@@ -102,6 +138,7 @@ for i in range(len(poster_names)):
     print(f"Last Poster Name: {last_posters[i]}")
     print('-' * 50)
 
+    
 import requests
 
 cookies = {
@@ -140,6 +177,7 @@ response = requests.get('https://www.nairaland.com/jobs/1', cookies=cookies, hea
 soup = BeautifulSoup(response.content, 'html.parser')
 print(soup)
 
+
 # Parse the HTML with BeautifulSoup
 soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -168,6 +206,7 @@ print(f"Views: {views}")
 print(f"Time: {time}")
 #print(f"Date: {date}")
 print(f"Last Poster Name: {last_poster}")
+
 
 
 # Parse the HTML with BeautifulSoup
@@ -220,8 +259,8 @@ for i in range(len(poster_names)):
     print(f"Date: {dates[i]}")
     print(f"Last Poster Name: {last_posters[i]}")
     print('-' * 50)
-
-
+    
+    
 # connecting to mySQL Database 
 import mysql.connector
 
@@ -234,10 +273,12 @@ mydatabase = mysql.connector.connect(
 
 print(mydatabase)
 
+
 #creating the database w3_schools
 mycursor = mydatabase.cursor() # SQL database connector
 
 mycursor.execute("CREATE DATABASE Nairaland_Jobs")
+
 
 # showing all the databases in MySQL
 mycursor = mydatabase.cursor()
@@ -245,6 +286,8 @@ mycursor.execute("SHOW DATABASES")
 
 for x in mycursor:
   print(x)
+
+
 
 # Try connecting to the database "nairaland jobs":
 mydatabase = mysql.connector.connect(  
@@ -254,6 +297,7 @@ mydatabase = mysql.connector.connect(
   port = "3306",
   database="nairaland_jobs"                                 
 )
+
 
 mycursor = mydatabase.cursor()
 
@@ -270,11 +314,13 @@ mycursor.execute("""
     )
 """)
 
+
 mycursor = mydatabase.cursor()
 mycursor.execute("SHOW TABLES")
 
 for x in mycursor:
   print(x)
+
 
 # PYTHON SCRIPTS PIPELINE FOR THE FIRST TABLE (1) JOBS
 
@@ -385,6 +431,7 @@ url = 'https://www.nairaland.com/jobs'
 # Start scraping the single page and storing it in the database
 scrape_single_page(url, cookies, headers)
 
+
 mycursor = mydatabase.cursor()
 
 # Corrected CREATE TABLE statement
@@ -400,11 +447,13 @@ mycursor.execute("""
     )
 """)
 
+
 mycursor = mydatabase.cursor()
 mycursor.execute("SHOW TABLES")
 
 for x in mycursor:
   print(x)
+
 
 # PYTHON SCRIPTS PIPELINE FOR THE SECOND TABLE (2) JOBS_2
 
@@ -516,6 +565,7 @@ url = 'https://www.nairaland.com/jobs/1'
 # Start scraping the single page and storing it in the database
 scrape_single_page(url, cookies, headers)
 
+
 # Use the DESC keyword to sort the result in a descending order.
 import mysql.connector
 
@@ -538,6 +588,7 @@ myresult = mycursor.fetchall()
 
 for x in myresult:
   print(x)
+
 
 # Use the DESC keyword to sort the result in a descending order.
 import mysql.connector
